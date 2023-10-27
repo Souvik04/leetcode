@@ -20,20 +20,18 @@ public class Solution {
         
         while(queue.Count > 0){
             var cur = queue.Dequeue();
+
+            if(cur == null){
+                continue;
+            }
             
             if(set.Contains(cur.val)){
                 return true;
             }
             
             set.Add(k - cur.val);
-            
-            if(cur.left != null){
-                queue.Enqueue(cur.left);
-            }
-            
-            if(cur.right != null){
-                queue.Enqueue(cur.right);
-            }
+            queue.Enqueue(cur.left);
+            queue.Enqueue(cur.right);
         }
         
         return false;        

@@ -26,9 +26,9 @@ public class Solution {
         int rootVal = 0;
         
         foreach(Node node in tree){
-            rootVal += node.val;
+            rootVal ^= node.val; // can also do + here
             foreach(Node child in node.children){
-                rootVal -= child.val;
+                rootVal ^= child.val; // can also do - here
             }
         }
         
@@ -41,3 +41,15 @@ public class Solution {
         return null;
     }
 }
+
+/*
+
+This approach is based on the idea of finding an element in an array which is not repeated twice
+int[] arr = [4, 3, 5, 3, 4]
+
+we apply xor operation on a running sum and return sum as answer
+
+Time complexity: O(n)
+Space complexity: O(1)
+
+*/

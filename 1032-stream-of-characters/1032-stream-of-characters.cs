@@ -49,22 +49,6 @@ public class StreamChecker {
 
         node.isEndOfWord = true;
     }
-    
-    private bool Search(Queue<char> stream, TrieNode root){
-        TrieNode node = root;
-        
-        while(stream.Count > 0){
-            char curChar = stream.Dequeue();
-            
-            if(!node.children.ContainsKey(curChar)){
-                return false;
-            }
-
-            node = node.children[curChar];      
-        }
-        
-        return true;
-    }
 }
 
 public class TrieNode{
@@ -81,4 +65,8 @@ public class TrieNode{
  * Your StreamChecker object will be instantiated and called as such:
  * StreamChecker obj = new StreamChecker(words);
  * bool param_1 = obj.Query(letter);
+
+ Time complexity: O(m)
+ Space complexity: O(m)
+
  */

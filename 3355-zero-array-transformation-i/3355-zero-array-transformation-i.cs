@@ -1,7 +1,7 @@
 public class Solution {
     public bool IsZeroArray(int[] nums, int[][] queries) {
         int n = nums.Length;
-        int[] diffArr = new int[n + 1];cases
+        int[] diffArr = new int[n + 1];
 
         // Step 1: Apply the difference array technique for each query
         foreach (int[] q in queries) {

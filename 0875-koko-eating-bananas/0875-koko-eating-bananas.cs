@@ -2,39 +2,36 @@ public class Solution {
     public int MinEatingSpeed(int[] piles, int h) {
         int left = 1;
         int right = piles.Max();
+        int speed = right; // start with max speed
+        
+        while(left <= right){
+            // let k be speed
+            int k = left + (right - left) / 2;
+            long hours = 0;
 
-        while(left < right){
-            int mid = left + (right - left) / 2;
+            foreach(int p in piles){
+                // time = number of banana / speed
+                hours += (int)Math.Ceiling(p / (double)k);
+            }
 
-            if(GetSpeed(mid, piles) <= h){
-                right = mid;
+            if(hours <= h){
+                // try a slower speed
+                speed = Math.Min(k, speed);
+                right = k - 1;
             }
             else{
-                left = mid + 1;
+                // try a higher speed
+                left = k + 1;
             }
         }
 
-        return left;
-    }
-
-    private int GetSpeed(int k, int[] piles){
-        int speed = 0;
-
-        foreach(int pile in piles){
-            speed += (int)Math.Ceiling((double)pile/k);
-        }
         return speed;
     }
 }
 
 /*
 
-1. perform binary search from 1 to max(piles)
-2. for each mid (k), calculate speed if Koko can finish within h hours
-3. move left (mid = right), if speed <= h, else move right (left = mid + 1)
-4. use a calculateSpeed(int k) function to calculate the speed
-    - iterate over each piles
-    - speed += ceil(pile / k)
-    - return speed <= h
+Time complexity: O(nlogn)
+Space complexity: O(1)
 
 */

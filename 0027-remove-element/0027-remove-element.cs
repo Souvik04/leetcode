@@ -1,18 +1,15 @@
 public class Solution {
     public int RemoveElement(int[] nums, int val) {
-        int count = 0;
+        int n = nums.Length;
+        int left = 0;
 
-        Array.Sort(nums);
-        
-        for(int i = 0; i < nums.Length; i++)
-        {
-            if (nums[i] == val)
-            {
-                count++;
-                nums[i] = nums[nums.Length - count];
+        for(int right = 0; right < n; right++){
+            if(nums[right] != val){
+                nums[left] = nums[right];
+                left++;
             }
         }
 
-        return nums.Length - count;
+        return left;
     }
 }
